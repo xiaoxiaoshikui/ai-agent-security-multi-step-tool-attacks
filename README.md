@@ -4,8 +4,9 @@
 
 ### Multi-Step Tool-Use Red Teaming Against a Real, Guardrail-Protected LLM Agent
 
-*A time-budgeted attack algorithm that automatically discovers, validates, and packs exploit chains against a live gpt-oss-20b / Gemma tool-using agent — built solo for Kaggle's Featured **AI Agent Security** competition.*
+*A time-budgeted attack algorithm that automatically discovers, validates, and packs exploit chains against a live gpt-oss-20b / Gemma tool-using agent — built solo for **[AI Agent Security: Multi-Step Tool Attacks](https://www.kaggle.com/competitions/ai-agent-security-multi-step-tool-attacks)**, a Featured Kaggle competition hosted by **OpenAI**.*
 
+[![Hosted by OpenAI](https://img.shields.io/badge/Hosted%20by-OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)](https://www.kaggle.com/competitions/ai-agent-security-multi-step-tool-attacks)
 [![Kaggle](https://img.shields.io/badge/Kaggle-Bronze%20Medal-CD7F32?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/competitions/ai-agent-security-multi-step-tool-attacks)
 [![Private LB](https://img.shields.io/badge/Private%20LB-Rank%20359%20of%204%2C251-2ea44f?style=for-the-badge)](#-by-the-numbers)
 [![Rank Jump](https://img.shields.io/badge/Rank%20Jump-up%202%2C456%20places-1f6feb?style=for-the-badge)](#-why-the-public-leaderboard-is-a-trap)
@@ -50,6 +51,8 @@
 <br/>
 
 ## The Task
+
+[**AI Agent Security: Multi-Step Tool Attacks**](https://www.kaggle.com/competitions/ai-agent-security-multi-step-tool-attacks) is a Featured Kaggle competition hosted by **OpenAI**, with a $50,000 prize pool and 4,251 competing teams. The brief: *"develop attack algorithms to identify reproducible multi-step failures in tool-using AI agents."*
 
 The harness drives a **real, tool-using target model** through a sandboxed environment (email, filesystem, HTTP, shell) behind a guardrail that inspects every tool call. An attacker supplies multi-turn message sequences; the evaluator replays each candidate against a **fresh instance of the real model** and scores it against a fixed predicate set:
 
