@@ -14,14 +14,19 @@
 [![License](https://img.shields.io/badge/License-MIT-4c1?style=for-the-badge)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](#running-it)
 
+gpt-oss-20b · Gemma — served via llama.cpp (GGUF) · driven through `aicomp_sdk`'s sandboxed tool-use harness
+
 </div>
 
 <br/>
 
+> [!IMPORTANT]
+> **Bottom line:** the single highest-scoring public-leaderboard lever (`SECRET_MARKER` exfiltration) scores essentially zero once the private guardrail scans it — betting the time budget instead on a private-safe, zero-read-provenance `CONFUSED_DEPUTY` chain is what turned an 83% score collapse at private evaluation into a bronze medal (rank 359 of 4,251, top ~8.4%).
+
 > [!NOTE]
 > Every exploit chain here is validated against the **real target model** (real gpt-oss-20b / Gemma weights, quantized GGUF over llama.cpp — not a mock) end-to-end before it's ever trusted. The one architectural rule this project earned the hard way: **respect the harness, don't fight it.**
 
-<br/>
+---
 
 ## 📊 By the Numbers
 
@@ -37,18 +42,20 @@
 
 </div>
 
-<br/>
+---
 
-## Table of Contents
+## Contents
 
+- [📊 By the Numbers](#-by-the-numbers)
 - [The Task](#the-task)
 - [Architecture](#architecture)
 - [🕳️ Why the Public Leaderboard Is a Trap](#-why-the-public-leaderboard-is-a-trap)
 - [Repo Structure](#repo-structure)
 - [Running It](#running-it)
+- [Citation](#citation)
 - [License](#license)
 
-<br/>
+---
 
 ## The Task
 
@@ -64,7 +71,7 @@ The harness drives a **real, tool-using target model** through a sandboxed envir
 
 Scoring is severity-weighted and **exponential** (`SEVERITY_W`), and evaluated against two different guardrails — a public one (dev signal only) and a private one (`persistent_provenance_private`) that decides the final rank. They do not behave the same way. That gap is the entire game.
 
-<br/>
+---
 
 ## Architecture
 
@@ -146,7 +153,7 @@ Findings are ranked by actual `SEVERITY_W` value density (not raw predicate seve
 An earlier design asked the model for several actions in a single message — and scored *worse* on the real leaderboard for it. Root-caused by reading the harness source directly: `response_parsing.py` hard-rejects any model turn containing more than one tool call. Local validation against a proxy model (gpt-4o-mini) never caught this, because that agent runs a completely different, unaffected parsing path. Every strategy above respects the one-action-per-turn constraint.
 </details>
 
-<br/>
+---
 
 ## 🕳️ Why the Public Leaderboard Is a Trap
 
@@ -172,7 +179,7 @@ When the private leaderboard was finally revealed, the public score collapsed ex
 
 </div>
 
-<br/>
+---
 
 ## Repo Structure
 
@@ -185,7 +192,7 @@ notebook/kernel-metadata.json
 
 This repo intentionally does **not** include the competition's own harness/SDK (`aicomp_sdk`, `kaggle_evaluation` — vendored separately by Kaggle, MIT-licensed by the competition organizers) or any third-party reference notebooks used during development. `submission/attack.py` imports from `aicomp_sdk`, which comes from the competition environment.
 
-<br/>
+---
 
 ## Running It
 
@@ -204,7 +211,22 @@ To rebuild the Kaggle notebook after editing `attack.py`:
 python notebook/build_notebook.py
 ```
 
-<br/>
+---
+
+## Citation
+
+There's no paper behind this — if the attack strategies or the harness-source-reading write-ups above are useful, citing the repository is enough:
+
+```bibtex
+@misc{guo2026jedattack,
+  title  = {JED Attack: a bronze-medal multi-step tool-use red-team agent for Kaggle's AI Agent Security competition},
+  author = {Guo, Yunxiang},
+  year   = {2026},
+  url    = {https://github.com/xiaoxiaoshikui/ai-agent-security-multi-step-tool-attacks}
+}
+```
+
+---
 
 ## License
 
