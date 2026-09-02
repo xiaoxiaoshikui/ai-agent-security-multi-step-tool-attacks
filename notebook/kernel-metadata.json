@@ -1,0 +1,17 @@
+{
+  "id": "yunxiangg/jed-attack-v2-marker-sweep-grounded-deputy",
+  "title": "JED Attack v2 - Marker Sweep + Grounded Deputy",
+  "code_file": "notebook.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "competition_sources": ["ai-agent-security-multi-step-tool-attacks"],
+  "model_sources": []
+}
